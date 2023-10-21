@@ -1,3 +1,4 @@
+
 const canvas = document.getElementById("canvas");
 
 canvas.width = window.innerWidth ;
@@ -6,16 +7,7 @@ canvas.height = window.innerHeight ;
 
 const c = canvas.getContext("2d");
 
-function drawLine(p1, p2, color = "blue", thickness = 2) {
-    c.beginPath();
-    c.strokeStyle = color ;
-    c.lineWidth = thickness; 
-    c.moveTo(p1.x, p1.y);
-    c.lineTo(p2.x, p2.y);
-    c.stroke();
-    c.closePath();
-}   
-let drawingColor = "blue";
+let drawingColor = "black";
 let previousPosition = null ;
 
 function onMouseDown(e) {
@@ -26,10 +18,8 @@ function onMouseDown(e) {
     canvas.addEventListener("mouseup", onMouseUp); 
 }
 
-function onMouseMove(e){ 
-    // for the first time inside this  
+function onMouseMove(e){  
     let currentPosition = [ e.clientX , e.clientY ];
-    // draw line from previous position to current position ;
     c.beginPath();
     c.moveTo(...previousPosition);
     c.lineTo(...currentPosition);
@@ -41,3 +31,35 @@ function onMouseMove(e){
 function onMouseUp(e){ 
     canvas.removeEventListener("mousemove", onMouseMove);
 }
+function erase(event) {
+    var canvas = document.getElementById("canvas");
+    var c = canvas.getContext("2d");
+    c.globalCompositeOperation = "destination-out";
+    c.clearRect(event.clientX, event.clientY, 20, 20);
+  }
+
+  const pencil = document.getElementById("pencil");
+let isPencilActive = false ;
+
+const colorPicker = document.getElementById("color-picker");
+
+
+colorPicker.addEventListener("change", () => {
+    drawingColor = colorPicker.value ;
+   console.log(drawingColor);
+});
+
+function onPencilClick() {
+    pencil.classList.toggle("active")
+    isPencilActive = !isPencilActive ;
+    if(isPencilActive) {
+        canvas.style.cursor = "crosshair";
+        canvas.addEventListener("mousedown", onMouseDown); 
+    }
+    else {
+        canvas.style.cursor = "auto";
+        canvas.removeEventListener("mousedown", onMouseDown)
+    }
+}
+pencil.addEventListener("click", onPencilClick) ;
+
