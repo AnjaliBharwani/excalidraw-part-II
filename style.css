@@ -143,10 +143,6 @@ div >  button> span{
     border-radius: 4px;
     padding: 10px;
  }
- .num{
-    font-size: 10px;
-    font-family: 'Arial';
- }
 
  @media only screen and (max-width: 760px) and (min-width: 310px) { 
     .menu{
