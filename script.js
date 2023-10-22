@@ -46,7 +46,7 @@ const colorPicker = document.getElementById("color-picker");
 
 colorPicker.addEventListener("change", () => {
     drawingColor = colorPicker.value ;
-   console.log(drawingColor);
+    c.strokeStyle = drawingColor;
 });
 
 function onPencilClick() {

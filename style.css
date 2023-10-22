@@ -20,9 +20,11 @@
     align-items: center;
     justify-content: space-between;
     z-index: 10;
+    
     padding: 10px;
 }
 #top > .options{ 
+    /* position: relative; */
     background-color: #fff;
     display: flex;
     align-items: center;
@@ -46,10 +48,11 @@
     font-size: 16px !important;
 }
 
-.btn:hover{
-    background-color: #ECECF3;
+/* .btn:hover{
+    background-color: #E0DFFF;
     border-radius: 4px;
-}
+    padding: 5px;
+} */
 .active {
     background-color: white;
     border-radius: 4px;
